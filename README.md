@@ -53,6 +53,10 @@ Can you come up with the most effective way of indexing/querying this data? Anyt
 
 Please use a `std.AutoArrayHashMapUnmanaged` as it's required for the binary fuse filter (this bench only operates on a single document, but ZLS will operate on thousands, so the filter used to prevent unnecessary accesses).
 
+The current solutions are:
+- `merge.zig`
+- `hashmap.zig`
+
 ## Useful Stats
 
 Our `trigram_to_decls` mapping has 10505 elements with an average of ~21 declarations (can be repeated) per trigram.

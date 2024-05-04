@@ -2,12 +2,12 @@ const std = @import("std");
 const common = @import("common.zig");
 const Allocator = std.mem.Allocator;
 const tests = @import("tests.zig").tests;
+const BinnedAllocator = @import("binned_allocator.zig").BinnedAllocator;
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-
-    const allocator = gpa.allocator();
+    var binned_allocator = BinnedAllocator(.{}){};
+    defer binned_allocator.deinit();
+    const allocator = binned_allocator.allocator();
 
     var index = try common.Index.init(allocator);
     defer index.deinit(allocator);
